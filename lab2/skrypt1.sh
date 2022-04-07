@@ -19,9 +19,8 @@ set -eu
 
 #Jesli pierwszy argument to katalog 
 if [[ -d ${DIR1} ]]; then
-    #Informacja ze to katalog
-    echo "First path consists of:"
     #Wypisanie plikow
+    echo "First path consists of:"
     for i in ${DIR1}/*; do
         #Informacja o odnalezieniu pliku
         if [[ -f ${i} ]]; then
@@ -29,7 +28,7 @@ if [[ -d ${DIR1} ]]; then
             #Informacja o odnalezieniu linku
             if [[ -L ${i} ]]; then
                 echo "File: ${i} is a link"
-            else
+            elif [[ -d ${DIR2} ]]; then
             #sam plik z rozszerzeniem
             FE=${i##*/}
             #rozszerzenie
