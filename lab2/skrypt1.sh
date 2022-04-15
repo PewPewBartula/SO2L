@@ -41,7 +41,6 @@ if [[ -d ${DIR1} ]]; then
             F=${F}"_ln."${E}
 
             #Linkowanie pliku do drugiej sciezki
-            #ln -sf ${PWD}/${i} ${DIR2}/${F}
             ln -sf "$(readlink -f ${i})" ${DIR2}/${F}
 
             fi
