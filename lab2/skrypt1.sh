@@ -41,13 +41,23 @@ if [[ -d ${DIR1} ]]; then
             F=${F}"_ln."${E}
 
             #Linkowanie pliku do drugiej sciezki
-            ln -s ${i} ${DIR2}/${F}
+            #ln -sf ${PWD}/${i} ${DIR2}/${F}
+            ln -sf "$(readlink -f ${i})" ${DIR2}/${F}
 
             fi
         fi
         #Informacja o odnalezieniu katalogu
         if [[ -d ${i} ]]; then
             echo "Directory: ${i}"
+            #sam katalog
+            F=${i##*/}
+            #katalog z dużych
+            F=${F^^}
+            #katalog z dużych + _ln
+            F=${F}"_ln"
+
+            #Linkowanie katalogu do drugiej sciezki
+            ln -sf "$(readlink -f ${i})" ${DIR2}/${F}
         fi
     done
 fi
